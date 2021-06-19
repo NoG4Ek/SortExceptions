@@ -1,0 +1,7 @@
+*1*BUILD AN INSTRUMENTED NATIVE IMAGE
+native-image -H:JNIConfigurationFiles=META-INF\native-image\jni-config.json -H:DynamicProxyConfigurationFiles=META-INF\native-image\proxy-config.json -H:ReflectionConfigurationFiles=META-INF\native-image\reflect-config.json -H:ResourceConfigurationFiles=META-INF\native-image\resource-config.json -H:SerializationConfigurationFiles=META-INF\native-image\serialization-config.json --initialize-at-build-time=kotlin --pgo-instrument -jar SortExceptions.jar
+
+*2*EXEC BUILDED INSTRUMENT
+
+*3*BUILD DLL
+native-image -H:JNIConfigurationFiles=META-INF\native-image\jni-config.json -H:DynamicProxyConfigurationFiles=META-INF\native-image\proxy-config.json -H:ReflectionConfigurationFiles=META-INF\native-image\reflect-config.json -H:ResourceConfigurationFiles=META-INF\native-image\resource-config.json -H:SerializationConfigurationFiles=META-INF\native-image\serialization-config.json --initialize-at-build-time=kotlin --pgo=default.iprof --shared -jar SortExceptions.jar
